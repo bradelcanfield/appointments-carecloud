@@ -16,16 +16,12 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = Appointment.new(appointment_params)
+    appointment = Appointment.new(appointment_params)
 
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, :created, :start_time, :end_time @appointment }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
-    end
+		if appointment.check && appointment.save
+			render json: appointment, status: 201, location: appointment
+		else
+			render json: appointment.errors, status: 422
+		end
   end
 end
