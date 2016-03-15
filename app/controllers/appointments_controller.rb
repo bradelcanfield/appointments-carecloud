@@ -5,9 +5,9 @@ class AppointmentsController < ApplicationController
     @appointments = Appointment.all
   end
 
-  def new
-    @appointment = Appointment.new
-  end
+  # def new
+  #   @appointment = Appointment.new
+  # end
 
   def update
   end
