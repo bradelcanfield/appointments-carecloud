@@ -2,8 +2,11 @@ class AppointmentsController < ApplicationController
   attr_accessor :show, :created, :start_time, :end_time
 
   def index
-    @appointments = Appointment.all
+    appointments = Appointment.all
+    render json: appointments, status: 200
+    # render json: appointments.error, status: 422
   end
+
 
   # def new
   #   @appointment = Appointment.new
